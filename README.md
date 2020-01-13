@@ -66,7 +66,7 @@ For example instance MIDAX-1 (Chain: MIDAX Store: 1) is matched by the following
 - *-1
 - M?DAX-1
 
-If a matching CHANNEL NAME is found, the app will look for UpdateRoot/<CHANNEL NAME>/<APP NAME FROM .VER FILE> for its update zips.
+If a matching CHANNEL NAME is found, the app will look for UpdateRoot/CHANNEL NAME/APP NAME FROM .VER FILE for its update zips.
 
 ## Rollback
 By default, the updater does not do rollbacks. If the current installed version is higher than what is found on the server, the current
