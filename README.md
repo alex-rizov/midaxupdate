@@ -1,8 +1,16 @@
 # midaxupdate
 
+## Compilation / packaging
+
+A distributable executable package  for Windows is produced via:
+
+```bash
+pyinstaller service.spec
+```
+
 ## Installation
 
-App should be installed in midax/update folder e.g. C:\midax\update
+The midaxupdate.exe should be installed as a service (recommended to be in midax/update folder e.g. C:\midax\update)
 
 ```bash
 midaxupdate install
