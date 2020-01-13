@@ -2,6 +2,7 @@
 
 ## Compilation / packaging
 
+Please update service.spec with local paths before building.
 A distributable executable package  for Windows is produced via:
 
 ```bash
