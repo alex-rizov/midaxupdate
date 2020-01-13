@@ -44,7 +44,7 @@ Version #s consist of an arbitrary number of version numericals separated by a d
 E.g. 26 > 25.2.6 > 25.2.5.2.1.1 > 25.2.5.2.1 > 25.2.5.2 > 25.2.5.1 > 25.2.4
 ```
 
-## FTP (option sites with no internet access)
+## FTP (option for sites with no internet access)
 Putting a FTP.CFG with a single line of Address:(Port - optional) will make the app check the FTP server instead of Google Drive
 
 When working with FTP, an UpdateLogs folder should also be created in the FTP root with write privileges for anonymous
