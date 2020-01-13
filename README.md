@@ -20,10 +20,10 @@ midaxupdate start
 
 Program looks for and updates Midax services (all services with Description starting with 'Midax...').
 In order for an application to be considered valid for update, it needs to have in its root folder a .VER file (for example LOYALTY.VER),
-which identifies the application. The applicaiton uses this file to maintaint its meta-data so it should not be modified externally, but
-can be created empty if missing to trigger the updater to recognize the folder as a valid application.
+which identifies the application. This file ia a an empty stub just used in order to trigger the updater to recognize the folder as a valid application,
+based on file name.
 
-By default, unless channels have been defined (see below), the updater then looks in the Google Drive folder 
+By default, unless channels have been defined (see below), the updater then looks by default in the Google Drive folder 
 UpdateRoot/DEFAULT/<APP NAME FROM .VER FILE> (UpdateRoot/DEFAULT/LOYALTY in the above
 case) to get the zip with the highest version # in its name. It only considers .zip archives which have valid version # names.
 ```bash
