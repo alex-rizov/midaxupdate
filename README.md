@@ -71,7 +71,7 @@ If a matching CHANNEL NAME is found, the app will look for UpdateRoot/CHANNEL NA
 ## Rollback
 By default, the updater does not do rollbacks. If the current installed version is higher than what is found on the server, the current
 installed version is not touched. If you'd want it to be replaced with a smaller version # found on the server, the server's 
-UpdateRoot/<CHANNEL NAME>/<APP NAME FROM .VER FILE> should contain an empty file without extension called ROLLBACK to trigger the 
+UpdateRoot/CHANNEL NAME/APP NAME FROM .VER FILE should contain an empty file without extension called ROLLBACK to trigger the 
 rollback to a smaller version number. The version rolled back to is still going to be the highest found on the server so any higher 
 (potentially unstable) versions need to be deleted before the rollback will happen.
 
