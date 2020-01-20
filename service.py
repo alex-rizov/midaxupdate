@@ -12,6 +12,7 @@ import subprocess
 from midaxupdate.update_runner import UpdaterRunner
 from midaxupdate.restarterreplacer import SelfShutdown
 
+RUN_INTERVAL_SECONDS = 300
 
 class AppServerSvc (win32serviceutil.ServiceFramework):
     _svc_name_ = "MidaxUpdateService"
@@ -60,7 +61,7 @@ class AppServerSvc (win32serviceutil.ServiceFramework):
             except Exception:
                 raise
             finally:
-                wait_result = win32event.WaitForSingleObjectEx(self.hWaitStop, 300000, True)
+                wait_result = win32event.WaitForSingleObjectEx(self.hWaitStop, RUN_INTERVAL_SECONDS * 1000, True)
         
             
 
