@@ -18,7 +18,7 @@ class UpdaterRunner(object):
                 copy_files_in_target_folder_with_subfolders(os.path.join(self.app_folder, "creds"), os.path.join(self.working_folder, "creds"))
                 MidaxLogger.initialize(format='%(asctime)s [%(filename)s:%(lineno)s - %(funcName)20s() %(levelname)s] %(message)s', level=logging.DEBUG, file = os.path.join(working_folder, "log/MidaxUpdate.log"), stackdriver_creds = os.path.join(app_folder, 'creds/logger'))                              
                 self.logger = get_logger()
-                self.logger.info('Relative base dir is {}, package folder is {}'.format(app_folder, working_folder))                
+                self.logger.info('Working folder is {}, package folder is {}'.format(working_folder, app_folder))                
 
         def run(self):
                 try:
