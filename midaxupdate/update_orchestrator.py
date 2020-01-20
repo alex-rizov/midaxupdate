@@ -53,7 +53,7 @@ class UpdateOrchestrator(object):
             logger().info("Starting self update.")  
         return self 
 
-    def delete_old_staging_folders(self):
+    def delete_old_staging_folders(self, folders_to_keep = 5):
         staging_folders = (os.path.join(app.working_folder, 'staging') for app in self.apps if os.path.isdir(os.path.join(app.working_folder, 'staging')))
         for staging_folder in staging_folders:
             # get all entries in the directory w/ stats
@@ -67,7 +67,7 @@ class UpdateOrchestrator(object):
             #  but on Unix it could be something else
             #NOTE: use `ST_MTIME` to sort by a modification date
 
-            for cdate, path in sorted(entries, reverse = True)[5:]:
+            for cdate, path in sorted(entries, reverse = True)[folders_to_keep:]:
                 logger().info('Will delete {}'.format(path))
                 try:
                     delete_tree_or_file(path)
