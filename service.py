@@ -55,7 +55,7 @@ class AppServerSvc (win32serviceutil.ServiceFramework):
             try:            
                 self.update_runner.run()
             except SelfRestart:
-                subprocess.Popen(["cmd.exe", "/C", "net", "stop", "MidaxUpdateService", "&&", "net", "start", "MidaxUpdateService"])
+                subprocess.Popen(["cmd.exe", "/C", "net", "stop", self._svc_name_, "&&", "net", "start", self._svc_name_])
                 self.update_runner.log("Shutting myself down") 
                 self.update_runner.log('Waiting on shutdown command.') 
             except Exception:
