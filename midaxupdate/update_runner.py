@@ -1,4 +1,4 @@
-from midaxupdate.restarterreplacer import SelfShutdown, copy_files_in_target_folder_with_subfolders
+from midaxupdate.restarterreplacer import SelfRestart, copy_files_in_target_folder_with_subfolders
 from midaxupdate.midax_folder_discovery import midax_discovery_folders_services
 from midaxupdate.ids_channels import IdGetter, ChannelDiscovery, MyId
 from midaxupdate.browser import BrowserFactory
@@ -50,7 +50,7 @@ class UpdaterRunner(object):
                         browser.store_file_at_path('UpdateLogs/{}.log'.format(MyId.get_id()), os.path.join(self.working_folder, "log/MidaxUpdate.log"))
                         browser.close()
                                                                                 
-                except SelfShutdown:
+                except SelfRestart:
                         raise
                 except Exception as e:
                         self.logger.error(str(e))                          

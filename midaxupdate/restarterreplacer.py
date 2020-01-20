@@ -15,7 +15,7 @@ STARTING = win32service.SERVICE_START_PENDING
 STOPPING = win32service.SERVICE_STOP_PENDING
 STOPPED = win32service.SERVICE_STOPPED
 
-class SelfShutdown(Exception):
+class SelfRestart(Exception):
     pass
 
 def status_string(status):
@@ -275,22 +275,22 @@ class RestarterReplacer(object):
         self.logger.info("Starting self update from %s into %s." % (self.staging_dir_path, self.target_path))
         if verify_folder_needs_update(self.staging_dir_path + '/new', self.target_path) is False:
             self.logger.info("No need to update. No files in %s/new or they match current working copies in %s! Restarting." % (self.staging_dir_path, self.target_path))
-            raise SelfShutdown
+            raise SelfRestart
 
         try:            
             self.move_current_files_to_old_dir()
 
             try:
                 self.copy_new_files_from_staging_dir()                                
-                raise SelfShutdown
-            except SelfShutdown:
+                raise SelfRestart
+            except SelfRestart:
                 raise
             except Exception as e:                
                 self.move_current_files_to_restore_dir()
                 self.restore_files_from_old_dir()
                 raise
 
-        except SelfShutdown:
+        except SelfRestart:
             raise 
         except Exception as e:
             self.logger.error(str(e))

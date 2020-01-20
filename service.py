@@ -10,7 +10,7 @@ import sys
 import os
 import subprocess 
 from midaxupdate.update_runner import UpdaterRunner
-from midaxupdate.restarterreplacer import SelfShutdown
+from midaxupdate.restarterreplacer import SelfRestart
 
 RUN_INTERVAL_SECONDS = 300
 
@@ -54,7 +54,7 @@ class AppServerSvc (win32serviceutil.ServiceFramework):
         while  wait_result == win32event.WAIT_TIMEOUT:                         
             try:            
                 self.update_runner.run()
-            except SelfShutdown:
+            except SelfRestart:
                 subprocess.Popen(["cmd.exe", "/C", "net", "stop", "MidaxUpdateService", "&&", "net", "start", "MidaxUpdateService"])
                 self.update_runner.log("Shutting myself down") 
                 self.update_runner.log('Waiting on shutdown command.') 
