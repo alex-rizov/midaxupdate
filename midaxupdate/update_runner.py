@@ -25,6 +25,7 @@ class UpdaterRunner(object):
                         paths_services = midax_discovery_folders_services()
                         IdGetter(paths_services, self.working_folder).get_id()
                         
+                        #Create UPDATE.ver to mark this as the UPDATE application according to spec.
                         with open(os.path.join(self.working_folder, 'UPDATE.ver'), 'a'):
                                 pass
 
