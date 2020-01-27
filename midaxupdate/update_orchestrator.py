@@ -118,7 +118,7 @@ class UpdateOrchestrator(object):
 
     def update(self):
         for app in list(filter(lambda x: x.app_name != 'UPDATE', self.apps_to_update)):
-            restarter = RestarterReplacer(app.services, app.working_folder, app.working_folder + '/staging/' + self.uuid + '/' + app.app_name)
+            restarter = RestarterReplacer(app.services, app.working_folder, app.staging_folder)
             logger().info("Starting update for {} to version {}".format(app.app_name, app.current_version))
             restarter.update()
             app.create_cver_file()
