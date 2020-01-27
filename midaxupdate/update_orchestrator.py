@@ -43,10 +43,11 @@ class UpdateOrchestrator(object):
         logger().info("Applications discovered: {}".format([str(app) for app in self.apps]))         
         logger().info("Version report", {'version_report' : reduce(lambda x,y: {**x, **y}, [app.to_version_JSON() for app in self.apps], {})}) 
         self.apps_to_update = [app for app in self.apps if app.needs_update()] 
-        self.apps_to_update.sort(key = cmp_to_key(sorting_func_update_last)) #so UPDATE is always last
+        
         if len(self.apps_to_update) > 0:
             logger().info("Applications that need update: {}".format([str(app) for app in self.apps_to_update]))   
 
+        #if we need self-update, do only self update this pass as it will cause a restart
         update_app_list = [x for x in self.apps_to_update if x.app_name == 'UPDATE']
         if len(update_app_list) > 0:      
             self.apps_to_update = update_app_list
