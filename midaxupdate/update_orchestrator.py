@@ -17,10 +17,10 @@ def sorting_func_update_last(x , y):
                         return 0
 
 class UpdateOrchestrator(object):
-    def __init__(self, folder_list, channel, browser, working_folder):
+    def __init__(self, services_by_folders_dict, channel, browser, working_folder):
         self.uuid = str(uuid4())
         self.working_folder = working_folder
-        self.folder_list = folder_list        
+        self.services_by_folders_dict = services_by_folders_dict        
         self.channel = channel
         self.browser = browser
         self.apps_to_update = None
@@ -28,11 +28,11 @@ class UpdateOrchestrator(object):
     
 
     def get_configured_folders(self):        
-        self.folder_list = {**application_browser.get_configured_folders_from_server(self.browser, 'UpdateRoot/{}'.format(self.channel), self.working_folder) , **self.folder_list}        
+        self.services_by_folders_dict = {**application_browser.get_configured_folders_from_server(self.browser, 'UpdateRoot/{}'.format(self.channel), self.working_folder) , **self.services_by_folders_dict}        
         return self
 
     def get_apps(self):
-        self.apps = [app for app in application_browser.search_paths_for_apps(self.folder_list)]        
+        self.apps = [app for app in application_browser.search_paths_for_apps(self.services_by_folders_dict)]        
         return self
 
     def check_for_updates(self):

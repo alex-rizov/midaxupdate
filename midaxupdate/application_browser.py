@@ -6,8 +6,8 @@ import io
 
 
 
-def search_paths_for_apps(paths_list):     
-    for path, discovered_services in paths_list.items():
+def search_paths_for_apps(services_paths_dict):     
+    for path, discovered_services in services_paths_dict.items():
         path = path.strip("/\\")
         if not os.path.isdir(path):
             logger().error(path + " does not exist on machine.")
