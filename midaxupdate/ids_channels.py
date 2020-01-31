@@ -6,17 +6,18 @@ from midaxupdate.my_id import MyId
 
 CHANNELFILE = 'CHANNELS.cfg'
 class ChannelDiscovery(object):
-    def __init__(self, browser, id):
+    def __init__(self, browser, id, working_folder):
         self.browser = browser
         self.id = id
+        self.working_folder = working_folder
 
     def get_channel(self):        
-        if os.path.isfile(os.path.join(os.getcwd(), CHANNELFILE)):
-            os.remove(os.path.join(os.getcwd(), CHANNELFILE))
+        if os.path.isfile(os.path.join(self.working_folder, CHANNELFILE)):
+            os.remove(os.path.join(self.working_folder, CHANNELFILE))
 
-        self.browser.get_file_at_path('UpdateRoot/{}'.format(CHANNELFILE), os.path.join(os.getcwd(), CHANNELFILE))
+        self.browser.get_file_at_path('UpdateRoot/{}'.format(CHANNELFILE), os.path.join(self.working_folder, CHANNELFILE))
         config = configparser.ConfigParser(allow_no_value=True)
-        config.read(os.path.join(os.getcwd(), CHANNELFILE))  
+        config.read(os.path.join(self.working_folder, CHANNELFILE))  
         
         def filter_channels(v):
             return len(list(filter(lambda x: fnmatch.fnmatch(self.id, x), config[v])))
