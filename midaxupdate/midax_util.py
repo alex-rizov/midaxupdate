@@ -78,6 +78,19 @@ def delete_tree_or_file(folder_path):
         os.rmdir(folder_path)
 
 
+def delete_old_bundle_dirs(path_to_current):
+        base_dir = os.path.join('C:/', 'ProgramData', 'Midax', 'Update')
+        if os.path.exists(base_dir):
+                for child_dir in os.listdir(base_dir):
+                        full_dir = os.path.join(base_dir, child_dir)
+                        if not os.path.isdir(full_dir):
+                                continue
+
+                        if os.path.normpath(full_dir) == os.path.normpath(path_to_current):
+                                continue
+
+                        delete_tree_or_file(full_dir)
+
 host_port_regex = re.compile(r'''
 (                            # first capture group = Addr
   \[                         # literal open bracket                       IPv6

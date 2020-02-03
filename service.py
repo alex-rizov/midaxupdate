@@ -11,6 +11,7 @@ import os
 import subprocess 
 from midaxupdate.update_runner import UpdaterRunner
 from midaxupdate.restarterreplacer import SelfRestart
+from midaxupdate.midax_util import delete_old_bundle_dirs
 
 RUN_INTERVAL_SECONDS = 300
 
@@ -45,8 +46,11 @@ class AppServerSvc (win32serviceutil.ServiceFramework):
     # extends the sys module by a flag frozen=True and sets the app 
     # path into variable _MEIPASS'.
             application_path = sys._MEIPASS
+            delete_old_bundle_dirs(path_to_current = application_path)
         else:
             application_path = os.path.dirname(os.path.abspath(__file__))      
+
+        
         
         self.update_runner = UpdaterRunner(os.path.dirname(win32api.GetModuleFileName(None)), application_path)
         self.update_runner.log('Service starting.')  
