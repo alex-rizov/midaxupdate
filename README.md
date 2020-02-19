@@ -50,6 +50,9 @@ Putting a FTP.CFG with a single line of Address:(Port - optional) will make the 
 When working with FTP, an UpdateLogs folder should also be created in the FTP root with write privileges for anonymous
 for the application to upload its logs.
 
+Standard path for the FTP folders on the server is c:\midax\ftp\UpdateRoot and c:\midax\ftp\UpdateLogs. c:\midax\ftp\ should be
+exposed via an FTP server.
+
 ## Instance identification
 The app's instance identity consists of a CHAIN-STORE pair.
 If in any Midax Service folder a CHAIN.id or STORE.id is discovered, the app assumes this identity for the corresponging portion. 
