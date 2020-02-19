@@ -51,7 +51,7 @@ When working with FTP, an UpdateLogs folder should also be created in the FTP ro
 for the application to upload its logs.
 
 Standard path for the FTP folders on the server is c:\midax\ftp\UpdateRoot and c:\midax\ftp\UpdateLogs. c:\midax\ftp\ should be
-exposed via an FTP server.
+exposed via an FTP server e.g. Filezilla.
 
 ## Instance identification
 The app's instance identity consists of a CHAIN-STORE pair.
