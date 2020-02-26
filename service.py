@@ -46,7 +46,10 @@ class AppServerSvc (win32serviceutil.ServiceFramework):
     # extends the sys module by a flag frozen=True and sets the app 
     # path into variable _MEIPASS'.
             application_path = sys._MEIPASS
-            delete_old_bundle_dirs(path_to_current = application_path)
+            try:
+                delete_old_bundle_dirs(path_to_current = application_path)
+            except:
+                pass
         else:
             application_path = os.path.dirname(os.path.abspath(__file__))      
 

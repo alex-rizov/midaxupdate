@@ -88,8 +88,10 @@ def delete_old_bundle_dirs(path_to_current):
 
                         if os.path.normpath(full_dir) == os.path.normpath(path_to_current):
                                 continue
-
-                        delete_tree_or_file(full_dir)
+                        try:
+                                delete_tree_or_file(full_dir)
+                        except:
+                                pass
 
 host_port_regex = re.compile(r'''
 (                            # first capture group = Addr
