@@ -20,12 +20,12 @@ class FTPBrowser(object):
     def get_file_at_path(self, path, target_location): 
         if os.path.isfile(target_location):
             os.remove(target_location)             
-                          
-        self.ftp.retrbinary('RETR {}'.format(path), lambda data : open(target_location, 'wb').write(data))
+
+        self.ftp.retrbinary('RETR {}'.format(path), lambda data : open(target_location, 'ab').write(data))
 
     def browse_path(self, path):                     
-        for (filename, props) in self.ftp.mlsd(path):
-            yield filename
+        for filename in self.ftp.nlst(path):
+            yield os.path.split(filename)[-1]
 
     def store_file_at_path(self, path, target_location): 
         with open(target_location, 'rb') as file:                       
