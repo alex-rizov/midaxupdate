@@ -17,8 +17,11 @@ class FTPBrowser(object):
         self.ftp.connect(host = remote_address, port = port)
         self.ftp.login()      
             
-    def get_file_at_path(self, path, target_location):                                     
-        self.ftp.retrbinary('RETR {}'.format(path), open(target_location, 'wb').write)
+    def get_file_at_path(self, path, target_location): 
+        if os.path.isfile(target_location):
+            os.remove(target_location)             
+                          
+        self.ftp.retrbinary('RETR {}'.format(path), lambda data : open(target_location, 'wb').write(data))
 
     def browse_path(self, path):                     
         for (filename, props) in self.ftp.mlsd(path):
