@@ -4,7 +4,7 @@ from setuptools import find_packages, setup
 
 setup(
     name='midaxupdate',
-    version='1.9.4',
+    version='1.9.6',
     url='http://www.midax.com',
     license='BSD',
     maintainer='Midax',

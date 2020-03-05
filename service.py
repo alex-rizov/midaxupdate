@@ -9,11 +9,12 @@ import logging
 import sys
 import os
 import subprocess 
+import random
 from midaxupdate.update_runner import UpdaterRunner
 from midaxupdate.restarterreplacer import SelfRestart
 from midaxupdate.midax_util import delete_old_bundle_dirs
 
-RUN_INTERVAL_SECONDS = 300
+RUN_INTERVAL_SECONDS = 600
 
 class AppServerSvc (win32serviceutil.ServiceFramework):
     _svc_name_ = "MidaxUpdateService"
@@ -68,7 +69,8 @@ class AppServerSvc (win32serviceutil.ServiceFramework):
             except Exception:
                 raise
             finally:
-                wait_result = win32event.WaitForSingleObjectEx(self.hWaitStop, RUN_INTERVAL_SECONDS * 1000, True)
+                wait_time = random.randrange(RUN_INTERVAL_SECONDS / 2, (RUN_INTERVAL_SECONDS * 3) / 2, 1) * 1000 
+                wait_result = win32event.WaitForSingleObjectEx(self.hWaitStop, wait_time, True)
         
             
 

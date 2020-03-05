@@ -25,8 +25,7 @@ def search_paths_for_apps(services_paths_dict):
 
 
 def browse_remote_versions(browser, path):                 
-    for item in browser.browse_path(path):  
-        logger().info("Found item {}".format(item))      
+    for item in browser.browse_path(path):            
         if item.endswith('.zip') and is_version(item[:-4]):
             yield item[:-4]
 

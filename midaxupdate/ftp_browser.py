@@ -19,9 +19,13 @@ class FTPBrowser(object):
             
     def get_file_at_path(self, path, target_location): 
         if os.path.isfile(target_location):
-            os.remove(target_location)             
+            os.remove(target_location) 
 
-        self.ftp.retrbinary('RETR {}'.format(path), lambda data : open(target_location, 'ab').write(data))
+        def write_file(data):
+            with open(target_location, 'ab') as f:
+                f.write(data)          
+
+        self.ftp.retrbinary('RETR {}'.format(path), write_file)
 
     def browse_path(self, path):                     
         for filename in self.ftp.nlst(path):
